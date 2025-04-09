@@ -5,6 +5,8 @@
 // @author       MotH
 // @match        https://pxls.space/
 // @icon         https://pxls.space/favicon.ico
+// @downloadURL  https://github.com/zf-moth/pxls.space-userscripts/raw/refs/heads/master/pixel-activity.user.js
+// @updateURL    https://github.com/zf-moth/pxls.space-userscripts/raw/refs/heads/master/pixel-activity.user.js
 // @grant        none
 // @run-at       document-end
 // ==/UserScript==
@@ -186,7 +188,7 @@
                     y: y,
                     startRadius: scale / 2,
                     startTime: Date.now(),
-                    color: color 
+                    color: color
                 });
             }
         };
@@ -219,7 +221,7 @@
             console.error('Settings panel not found.');
             return;
         }
-    
+
         // Create a new article for Pixel Activity settings
         const customSettingsArticle = document.createElement('article');
         customSettingsArticle.setAttribute('data-id', 'pixel-activity');
@@ -261,26 +263,26 @@
                 </section>
             </div>
         `;
-    
+
         // Append the new section to the settings panel
         settingsPanel.appendChild(customSettingsArticle);
-    
+
         // Add event listeners for the new settings
         document.getElementById('setting-pixel-activity-enable').addEventListener('change', (event) => {
             isDrawingEnabled = event.target.checked;
             App.ls.set('pixelActivityEnabled', isDrawingEnabled);
         });
-    
+
         document.getElementById('setting-pixel-activity-color-mode').addEventListener('change', (event) => {
             const colorMode = event.target.value;
             App.ls.set('pixelActivityColorMode', colorMode);
         });
-    
+
         document.getElementById('setting-pixel-activity-custom-color').addEventListener('input', (event) => {
             const customColor = event.target.value;
             App.ls.set('pixelActivityCustomColor', customColor);
         });
-    
+
         document.getElementById('setting-pixel-activity-opacity').addEventListener('input', (event) => {
             const opacity = parseFloat(event.target.value);
             App.ls.set('pixelActivityOpacity', opacity);
